@@ -18,21 +18,39 @@ import java.util.List;
  */
 @Service
 public class DepartmentService {
+
+
+    /**
+     * 获取所有的部门信息通过ParentId
+     */
     @Autowired
     DepartmentMapper departmentMapper;
     public List<Department> getAllDepartments() {
         return departmentMapper.getAllDepartmentsByParentId(-1);
     }
 
+    /**
+     * 添加部门
+     * @param dep 需要添加的部门
+     */
     public void addDep(Department dep) {
         dep.setEnabled(true);
         departmentMapper.addDep(dep);
     }
 
+    /**
+     * 删除部门
+     * @param dep
+     */
     public void deleteDepById(Department dep) {
         departmentMapper.deleteDepById(dep);
     }
 
+
+    /**
+     * 获取所有的部门信息用于execel输出
+     * @return
+     */
     public List<Department> getAllDepartmentsWithOutChildren() {
         return departmentMapper.getAllDepartmentsWithOutChildren();
     }

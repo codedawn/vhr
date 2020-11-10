@@ -2,7 +2,6 @@ package org.javaboy.vhr.service;
 
 import org.javaboy.vhr.mapper.PositionMapper;
 import org.javaboy.vhr.model.Position;
-import org.javaboy.vhr.model.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,24 +21,49 @@ import java.util.List;
 public class PositionService {
     @Autowired
     PositionMapper positionMapper;
+
+    /**
+     * 获取所有的职位
+     * @return
+     */
     public List<Position> getAllPositions() {
         return positionMapper.getAllPositions();
     }
 
+    /**
+     * 添加职位
+     * @param position
+     * @return
+     */
     public Integer addPosition(Position position) {
         position.setEnabled(true);
         position.setCreateDate(new Date());
         return positionMapper.insertSelective(position);
     }
 
+    /**
+     * 更新职位
+     * @param position
+     * @return
+     */
     public Integer updatePositions(Position position) {
         return positionMapper.updateByPrimaryKeySelective(position);
     }
 
+    /**
+     * 删除职位通过id
+     * @param id
+     * @return
+     */
     public Integer deletePositionById(Integer id) {
         return positionMapper.deleteByPrimaryKey(id);
     }
 
+    /**
+     * 通过id批量删除职位
+     * @param ids
+     * @return
+     */
     public Integer deletePositionsByIds(Integer[] ids) {
         return positionMapper.deletePositionsByIds(ids);
     }

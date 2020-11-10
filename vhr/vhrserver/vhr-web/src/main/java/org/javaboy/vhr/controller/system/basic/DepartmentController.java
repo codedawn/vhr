@@ -20,12 +20,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/basic/department")
 public class DepartmentController {
+
+
+
     @Autowired
     DepartmentService departmentService;
+
+    /**
+     * 获取所有的部门
+     * @return
+     */
     @GetMapping("/")
     public List<Department> getAllDepartments() {
         return departmentService.getAllDepartments();
     }
+
     @PostMapping("/")
     public RespBean addDep(@RequestBody Department dep) {
         departmentService.addDep(dep);

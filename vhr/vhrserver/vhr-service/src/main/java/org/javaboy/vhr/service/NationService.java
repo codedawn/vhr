@@ -18,6 +18,9 @@ import java.util.List;
  */
 @Service
 public class NationService {
+    /**
+     * 获取民族
+     */
     @Autowired
     NationMapper nationMapper;
     public List<Nation> getAllNations() {

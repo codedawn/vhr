@@ -24,7 +24,7 @@ import java.io.IOException;
 public class LoginController {
     @GetMapping("/login")
     public RespBean login() {
-        return RespBean.error("尚未登录，请登录!");
+        return RespBean.error("尚未登录，请登录!q");
     }
 
     @GetMapping("/verifyCode")
