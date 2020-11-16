@@ -558,6 +558,7 @@
 </template>
 
 <script>
+
     export default {
         name: "EmpBasic",
         data() {
@@ -749,6 +750,7 @@
                 this.dialogVisible = true;
             },
             deleteEmp(data) {
+
                 this.$confirm('此操作将永久删除【' + data.name + '】, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
@@ -760,10 +762,8 @@
                         }
                     })
                 }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
-                    });
+                    this.$message.info("已取消删除")
+
                 });
             },
             doAddEmp() {

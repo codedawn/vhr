@@ -39,7 +39,10 @@
                     <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
                         欢迎来到微人事！
                     </div>
-                    <router-view class="homeRouterView"/>
+                    <el-card v-show="this.$router.currentRoute.path!='/home'">
+                        <router-view class="homeRouterView"/>
+                    </el-card>
+
                 </el-main>
             </el-container>
         </el-container>

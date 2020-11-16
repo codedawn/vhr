@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import "./assets/css/global.css"
 import {
     Button,
     Input,
@@ -99,6 +100,7 @@ Vue.use(Form);
 Vue.use(Tag);
 Vue.prototype.$alert = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$message=Message
 
 import {postRequest} from "./utils/api";
 import {postKeyValueRequest} from "./utils/api";

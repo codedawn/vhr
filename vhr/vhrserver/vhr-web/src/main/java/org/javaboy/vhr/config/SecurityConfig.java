@@ -51,10 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(hrService);
     }
 
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/","/css/**", "/js/**", "/index.html", "/img/**", "/fonts/**", "/favicon.ico", "/verifyCode");
+
     }
+
 
     @Bean
     LoginFilter loginFilter() throws Exception {
@@ -116,6 +119,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .and()
+//                .rememberMe()
+//                .and()
                 .logout()
                 .logoutSuccessHandler((req, resp, authentication) -> {
                             resp.setContentType("application/json;charset=utf-8");
