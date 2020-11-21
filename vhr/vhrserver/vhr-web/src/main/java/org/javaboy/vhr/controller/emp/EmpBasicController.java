@@ -1,5 +1,6 @@
 package org.javaboy.vhr.controller.emp;
 
+import io.swagger.annotations.Api;
 import org.javaboy.vhr.model.*;
 import org.javaboy.vhr.service.*;
 import org.javaboy.vhr.utils.POIUtils;
@@ -21,6 +22,7 @@ import java.util.List;
  * @网站 http://www.javaboy.org
  * @时间 2019-10-29 7:41
  */
+@Api("员工资料")
 @RestController
 @RequestMapping("/employee/basic")
 public class EmpBasicController {
