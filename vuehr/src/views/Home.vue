@@ -1,5 +1,4 @@
 <template>
-    <div>
         <el-container>
             <el-header class="homeHeader">
                 <div class="title">微人事</div>
@@ -46,7 +45,6 @@
                 </el-main>
             </el-container>
         </el-container>
-    </div>
 </template>
 
 <script>
