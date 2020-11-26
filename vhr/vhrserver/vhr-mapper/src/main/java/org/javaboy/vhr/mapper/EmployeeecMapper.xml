@@ -9,26 +9,31 @@
     <result column="ecPoint" property="ecpoint" jdbcType="INTEGER" />
     <result column="ecType" property="ectype" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <association property="employee" javaType="org.javaboy.vhr.model.Employee"  resultMap="emp">
+    </association>
+  </resultMap>
+  <resultMap id="emp" type="org.javaboy.vhr.model.Employee" extends="org.javaboy.vhr.mapper.EmployeeMapper.BaseResultMap">
+    <result column="eid" property="id" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, eid, ecDate, ecReason, ecPoint, ecType, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from employeeec
-    where id = #{id,jdbcType=INTEGER}
+    select
+    *
+    from employeeec,employee
+    where employeeec.id = #{id,jdbcType=INTEGER} and employeeec.eid=employee.id
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from employeeec
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.javaboy.vhr.model.Employeeec" >
-    insert into employeeec (id, eid, ecDate, 
-      ecReason, ecPoint, ecType, 
+    insert into employeeec (id, eid, ecDate,
+      ecReason, ecPoint, ecType,
       remark)
-    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{ecdate,jdbcType=DATE}, 
-      #{ecreason,jdbcType=VARCHAR}, #{ecpoint,jdbcType=INTEGER}, #{ectype,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{ecdate,jdbcType=DATE},
+      #{ecreason,jdbcType=VARCHAR}, #{ecpoint,jdbcType=INTEGER}, #{ectype,jdbcType=INTEGER},
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.javaboy.vhr.model.Employeeec" >
@@ -114,4 +119,13 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllEmployeeec" resultMap="BaseResultMap">
+    select * from employeeec,employee
+    where employeeec.eid=employee.id
+    <if test="query!=''" >
+      and (employee.name like concat('%',#{query},'%') or employee.workID like concat('%',#{query},'%'))
+    </if>
+  </select>
+
 </mapper>

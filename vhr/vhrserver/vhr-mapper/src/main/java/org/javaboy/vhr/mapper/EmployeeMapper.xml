@@ -54,9 +54,9 @@
         </association>
     </resultMap>
     <sql id="Base_Column_List">
-    id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email, 
-    phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty, 
-    school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate, 
+    id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email,
+    phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty,
+    school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate,
     beginContract, endContract, workAge
   </sql>
     <select id="maxWorkID" resultType="java.lang.Integer">
@@ -83,6 +83,7 @@
             <result column="dname" property="name"/>
         </association>
     </resultMap>
+
     <select id="getEmployeeByPageWithSalary" resultMap="EmployeeWithSalary">
         SELECT e.*,d.`name` AS dname,s.`id` AS sid,s.`accumulationFundBase` AS
         saccumulationFundBase,s.`accumulationFundPer` AS saccumulationFundPer,s.`allSalary` AS
@@ -105,6 +106,12 @@
         n,politicsstatus p,department d,joblevel j,position pos where e.`nationId`=n.`id` and e.`politicId`=p.`id` and
         e.`departmentId`=d.`id` and e.`jobLevelId`=j.`id` and e.`posId`=pos.`id` and e.`id`=#{id}
     </select>
+
+
+    <select id="getAllEmployee" resultType="org.javaboy.vhr.model.Employee">
+        select id,name,workID from employee
+    </select>
+
     <select id="getEmployeeByPage" resultMap="AllEmployeeInfo">
         select e.*,p.`id` as pid,p.`name` as pname,n.`id` as nid,n.`name` as nname,d.`id` as did,d.`name` as
         dname,j.`id` as jid,j.`name` as jname,pos.`id` as posid,pos.`name` as posname from employee e,nation
@@ -206,24 +213,24 @@
         </foreach>
     </insert>
     <insert id="insert" parameterType="org.javaboy.vhr.model.Employee">
-    insert into employee (id, name, gender, 
-      birthday, idCard, wedlock, nationId, 
-      nativePlace, politicId, email, 
-      phone, address, departmentId, 
-      jobLevelId, posId, engageForm, 
-      tiptopDegree, specialty, school, 
-      beginDate, workState, workID, 
-      contractTerm, conversionTime, notWorkDate, 
+    insert into employee (id, name, gender,
+      birthday, idCard, wedlock, nationId,
+      nativePlace, politicId, email,
+      phone, address, departmentId,
+      jobLevelId, posId, engageForm,
+      tiptopDegree, specialty, school,
+      beginDate, workState, workID,
+      contractTerm, conversionTime, notWorkDate,
       beginContract, endContract, workAge
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
-      #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER}, 
-      #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, 
-      #{jobLevelId,jdbcType=INTEGER}, #{posId,jdbcType=INTEGER}, #{engageForm,jdbcType=VARCHAR}, 
-      #{tiptopDegree,jdbcType=CHAR}, #{specialty,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
-      #{beginDate,jdbcType=DATE}, #{workState,jdbcType=CHAR}, #{workID,jdbcType=CHAR}, 
-      #{contractTerm,jdbcType=DOUBLE}, #{conversionTime,jdbcType=DATE}, #{notWorkDate,jdbcType=DATE}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR},
+      #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
+      #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
+      #{jobLevelId,jdbcType=INTEGER}, #{posId,jdbcType=INTEGER}, #{engageForm,jdbcType=VARCHAR},
+      #{tiptopDegree,jdbcType=CHAR}, #{specialty,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR},
+      #{beginDate,jdbcType=DATE}, #{workState,jdbcType=CHAR}, #{workID,jdbcType=CHAR},
+      #{contractTerm,jdbcType=DOUBLE}, #{conversionTime,jdbcType=DATE}, #{notWorkDate,jdbcType=DATE},
       #{beginContract,jdbcType=DATE}, #{endContract,jdbcType=DATE}, #{workAge,jdbcType=INTEGER}
       )
   </insert>

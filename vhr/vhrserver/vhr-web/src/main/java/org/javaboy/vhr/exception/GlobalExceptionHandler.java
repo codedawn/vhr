@@ -1,6 +1,7 @@
 package org.javaboy.vhr.exception;
 
 import org.javaboy.vhr.model.RespBean;
+import org.javaboy.vhr.uitls.R;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,5 +25,12 @@ public class GlobalExceptionHandler {
             return RespBean.error("该数据有关联数据，操作失败!");
         }
         return RespBean.error("数据库异常，操作失败!");
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    public R exception(Exception e){
+        e.printStackTrace();
+        return R.error().message(e.getMessage());
     }
 }

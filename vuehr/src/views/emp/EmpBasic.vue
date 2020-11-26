@@ -202,6 +202,10 @@
               <el-form-item label="职称">
                 <el-tag>{{ props.row.jobLevel.name }}</el-tag>
               </el-form-item>
+              <el-form-item label="在职状态">
+                <el-tag>{{ props.row.workState }}</el-tag>
+              </el-form-item>
+
               <el-form-item label="聘用形式">
                 <el-tag>{{ props.row.engageForm }}</el-tag>
               </el-form-item>

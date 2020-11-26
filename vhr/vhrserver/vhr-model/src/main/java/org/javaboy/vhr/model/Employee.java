@@ -383,4 +383,7 @@ public class Employee implements Serializable {
     public void setWorkAge(Integer workAge) {
         this.workAge = workAge;
     }
+
+    public Employee() {
+    }
 }
