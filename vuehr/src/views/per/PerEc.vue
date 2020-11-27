@@ -96,6 +96,24 @@
       </el-table-column>
 
       <el-table-column
+              prop="employee.workID"
+              label="工号"
+              width="180" align="center">
+      </el-table-column>
+
+      <el-table-column
+              prop="employee.gender"
+              label="性别"
+              width="180" align="center">
+      </el-table-column>
+
+      <el-table-column
+              prop="employee.department.name"
+              label="所属部门"
+              width="180" align="center">
+      </el-table-column>
+
+      <el-table-column
               prop="ecreason"
               label="奖惩原因" align="center">
       </el-table-column>
@@ -157,7 +175,7 @@
                 queryinfo: {
                     query: '',
                     pagenum: 1,
-                    pageSize: 2,
+                    pageSize: 5,
 
                 },
                 dialogVisible: false,
@@ -220,6 +238,7 @@
                 this.getDataList();
                 // console.log(`当前页: ${val}`);
             },
+            //获取数据
             getDataList() {
                 this.getRequest("/employeeec", this.queryinfo).then(resp => {
                     if (resp) {
@@ -231,10 +250,19 @@
 
             }
             ,
+            //添加
             addEmployeec() {
+                this.addQuery={
+                    eid: 1,
+                    ecdate: '',
+                    ecreason: '',
+                    ecpoint: 1,
+                    ectype: 0,
+                    remark: '',
+                }
                 this.flag = 1;
                 this.dialogVisible = true
-                this.getRequest("/employeeec/employee", this.addQuery).then(resp => {
+                this.getRequest("/employeeec/employee").then(resp => {
                     if (resp) {
                         console.log(resp)
                         this.employees = resp.data.employees
@@ -242,6 +270,7 @@
                 })
 
             },
+            //提交添加
             submitEmployee() {
                 this.$refs.form.validate(valid => {
                     if (!valid) return
@@ -264,6 +293,7 @@
                                 this.dialogVisible = false
                                 this.employees = []
                                 this.$refs.form.resetFields()
+
                                 this.getDataList()
                             }
                         }).catch(reason => {
@@ -271,16 +301,18 @@
                         })
                     }
 
+
                 })
 
             }
             ,
             handleClose() {
-                console.log(this)
+                // console.log(this)
                 this.$refs.form.resetFields()
-                this.$message.success("关闭成功");
+                this.$message.success("取消操作");
                 this.dialogVisible = false
             },
+            //编辑
             showEditDialog(id) {
                 this.flag = 2;
                 this.getRequest("employeeec/" + id).then(resp => {
@@ -290,18 +322,33 @@
                     this.employees.push(resp.data.employeeec.employee)
                     this.dialogVisible = true
                 }).catch(reason => {
-
+                  console.log(reason)
                 })
             },
+            //删除
             removeEmployeeecById(id) {
-                this.deleteRequest("employeeec/" + id).then(resp => {
-                    this.$message.success(resp.message)
-                    this.getDataList()
-                }).catch(reason => {
-                    console.log(reason)
-                })
-                console.log(id)
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.deleteRequest("employeeec/" + id).then(resp => {
+                        this.$message.success(resp.message)
+                        this.getDataList()
+                    }).catch(reason => {
+                        console.log(reason)
+                    })
+
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+
             }
+
+
         }
     }
 </script>

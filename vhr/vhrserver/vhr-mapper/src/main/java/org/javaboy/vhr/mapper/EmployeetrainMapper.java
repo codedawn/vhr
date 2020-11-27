@@ -2,6 +2,8 @@ package org.javaboy.vhr.mapper;
 
 import org.javaboy.vhr.model.Employeetrain;
 
+import java.util.List;
+
 public interface EmployeetrainMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface EmployeetrainMapper {
     int updateByPrimaryKeySelective(Employeetrain record);
 
     int updateByPrimaryKey(Employeetrain record);
+
+    List<Employeetrain> selectAllEmployeeTrain(String query);
 }

@@ -1,7 +1,9 @@
 package org.javaboy.vhr;
 
-import org.javaboy.vhr.mapper.EmployeeecMapper;
 import org.javaboy.vhr.model.Employeeec;
+import org.javaboy.vhr.model.Employeetrain;
+import org.javaboy.vhr.service.EmploeeecService;
+import org.javaboy.vhr.service.EmployeeTrainService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,11 @@ import java.util.List;
 public class VhrApplicationTests {
 
     @Autowired
-    EmployeeecMapper employeeecMapper;
+    EmployeeTrainService employeeTrainService;
+
+
+    @Autowired
+    EmploeeecService emploeeecService;
 
 
 
@@ -26,7 +32,8 @@ public class VhrApplicationTests {
     @Test
     public void employeeecMapperTest(){
 
-        List<Employeeec> allEmployeeec = employeeecMapper.selectAllEmployeeec("");
+        List<Employeetrain> allEmployeeec = employeeTrainService.selectAllEmployeeTrain("江");
+        List<Employeeec> allEmployeeec1 = emploeeecService.getAllEmployeeec("");
         System.out.println(allEmployeeec);
     }
 

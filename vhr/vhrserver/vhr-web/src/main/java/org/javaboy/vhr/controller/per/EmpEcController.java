@@ -3,6 +3,7 @@ package org.javaboy.vhr.controller.per;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
 import org.javaboy.vhr.model.Employeeec;
 import org.javaboy.vhr.service.EmploeeecService;
 import org.javaboy.vhr.service.EmployeeService;
@@ -16,7 +17,7 @@ import java.util.List;
  * @author codedawn
  * @date 2020-11-23 21:58
  */
-
+@Api("奖罚的crud")
 @RestController
 @RequestMapping("/employeeec")
 public class EmpEcController {

@@ -7,24 +7,32 @@
     <result column="trainDate" property="traindate" jdbcType="DATE" />
     <result column="trainContent" property="traincontent" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <association property="employee" resultMap="org.javaboy.vhr.mapper.EmployeeecMapper.emp"></association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, eid, trainDate, trainContent, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from employeetrain
-    where id = #{id,jdbcType=INTEGER}
+    select *
+    from employeetrain,employee
+    where employeetrain.id = #{id,jdbcType=INTEGER} and employeetrain.eid=employee.id
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+
+    <select id="selectAllEmployeeTrain" resultMap="BaseResultMap">
+     select * from employeetrain,employee where employeetrain.eid=employee.id
+      <if test="query!=''" >
+        and (employee.name like concat('%',#{query},'%') or employee.workID like concat('%',#{query},'%'))
+      </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from employeetrain
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.javaboy.vhr.model.Employeetrain" >
-    insert into employeetrain (id, eid, trainDate, 
+    insert into employeetrain (id, eid, trainDate,
       trainContent, remark)
-    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{traindate,jdbcType=DATE}, 
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{traindate,jdbcType=DATE},
       #{traincontent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.javaboy.vhr.model.Employeetrain" >

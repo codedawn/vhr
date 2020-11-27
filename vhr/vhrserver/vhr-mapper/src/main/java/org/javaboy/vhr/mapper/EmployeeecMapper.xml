@@ -14,6 +14,8 @@
   </resultMap>
   <resultMap id="emp" type="org.javaboy.vhr.model.Employee" extends="org.javaboy.vhr.mapper.EmployeeMapper.BaseResultMap">
     <result column="eid" property="id" jdbcType="INTEGER" />
+    <association property="department" column="departmentId" javaType="org.javaboy.vhr.model.Department" select="org.javaboy.vhr.mapper.DepartmentMapper.selectByPrimaryKey">
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, eid, ecDate, ecReason, ecPoint, ecType, remark

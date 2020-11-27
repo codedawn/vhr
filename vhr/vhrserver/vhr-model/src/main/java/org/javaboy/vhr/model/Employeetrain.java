@@ -1,5 +1,7 @@
 package org.javaboy.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Employeetrain {
@@ -7,11 +9,26 @@ public class Employeetrain {
 
     private Integer eid;
 
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date traindate;
 
     private String traincontent;
 
     private String remark;
+
+    private Employee employee;
+
+    public Employeetrain() {
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public Employeetrain setEmployee(Employee employee) {
+        this.employee = employee;
+        return this;
+    }
 
     public Integer getId() {
         return id;
