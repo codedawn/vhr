@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="margin-bottom:10px">
       <el-col :span="6">
         <el-input @keydown.enter.native="getDataList" placeholder="请输入员工名、工号进行搜索，可以直接回车搜索..." v-model="queryinfo.query"
                   clearable @clear="getDataList">
@@ -77,7 +77,7 @@
 
 
     <el-table
-
+            border
             :data="tableData"
             style="width: 100%">
       <el-table-column type="index">
@@ -142,7 +142,7 @@
       </el-table-column>
 
 
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" width="190px">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(scope.row.id)">编辑</el-button>
           <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeEmployeeecById(scope.row.id)">删除
@@ -327,7 +327,7 @@
             },
             //删除
             removeEmployeeecById(id) {
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

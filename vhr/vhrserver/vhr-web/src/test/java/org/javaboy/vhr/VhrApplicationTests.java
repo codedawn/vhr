@@ -1,8 +1,9 @@
 package org.javaboy.vhr;
 
-import org.javaboy.vhr.model.Employeeec;
-import org.javaboy.vhr.model.Employeetrain;
+import org.javaboy.vhr.model.Employeeremove;
+import org.javaboy.vhr.service.DepartmentService;
 import org.javaboy.vhr.service.EmploeeecService;
+import org.javaboy.vhr.service.EmployeeRemoveService;
 import org.javaboy.vhr.service.EmployeeTrainService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,12 @@ public class VhrApplicationTests {
     EmploeeecService emploeeecService;
 
 
+    @Autowired
+    DepartmentService departmentService;
+
+
+    @Autowired
+    EmployeeRemoveService employeeRemoveService;
 
     @Test
     public void contextLoads() {
@@ -32,9 +39,9 @@ public class VhrApplicationTests {
     @Test
     public void employeeecMapperTest(){
 
-        List<Employeetrain> allEmployeeec = employeeTrainService.selectAllEmployeeTrain("江");
-        List<Employeeec> allEmployeeec1 = emploeeecService.getAllEmployeeec("");
-        System.out.println(allEmployeeec);
+        List<Employeeremove> employeeremoves = employeeRemoveService.selectAllEmployeeRemove("");
+
+        System.out.println(employeeremoves);
     }
 
 }

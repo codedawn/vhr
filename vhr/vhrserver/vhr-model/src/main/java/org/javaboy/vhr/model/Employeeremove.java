@@ -1,5 +1,7 @@
 package org.javaboy.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Employeeremove {
@@ -11,11 +13,49 @@ public class Employeeremove {
 
     private Integer afterjobid;
 
+    private Department department;
+
+    private Position position;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date removedate;
 
     private String reason;
 
     private String remark;
+
+
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public Employeeremove setEmployee(Employee employee) {
+        this.employee = employee;
+        return this;
+    }
+
+    public Employeeremove() {
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public Employeeremove setDepartment(Department department) {
+        this.department = department;
+        return this;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Employeeremove setPosition(Position position) {
+        this.position = position;
+        return this;
+    }
 
     public Integer getId() {
         return id;

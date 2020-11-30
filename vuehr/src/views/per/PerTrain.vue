@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <el-row :gutter="20">
+    <el-row :gutter="20"  style="margin-bottom:10px">
       <el-col :span="6">
         <el-input @keydown.enter.native="getDataList" placeholder="请输入员工名、工号进行搜索，可以直接回车搜索..." v-model="queryinfo.query"
                   clearable @clear="getDataList">
@@ -15,6 +15,7 @@
 
     <!--        添加培训的dialog-->
     <el-dialog
+
             :close-on-click-modal="false"
             title="添加培训"
             :visible.sync="dialogVisible"
@@ -60,7 +61,7 @@
     </el-dialog>
 
     <el-table
-
+            border
             :data="tableData"
             style="width: 100%">
       <el-table-column type="index">
@@ -107,7 +108,7 @@
       </el-table-column>
 
 
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" width="190px">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(scope.row.id)">编辑</el-button>
           <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeEmployeeecById(scope.row.id)">删除

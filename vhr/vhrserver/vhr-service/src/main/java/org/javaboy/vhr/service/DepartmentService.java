@@ -25,6 +25,7 @@ public class DepartmentService {
      */
     @Autowired
     DepartmentMapper departmentMapper;
+
     public List<Department> getAllDepartments() {
         return departmentMapper.getAllDepartmentsByParentId(-1);
     }

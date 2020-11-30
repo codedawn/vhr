@@ -3,6 +3,7 @@ package org.javaboy.vhr.controller.system.basic;
 import org.javaboy.vhr.model.Position;
 import org.javaboy.vhr.model.RespBean;
 import org.javaboy.vhr.service.PositionService;
+import org.javaboy.vhr.uitls.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,12 @@ public class PositionController {
     @GetMapping("/")
     public List<Position> getAllPositions() {
         return positionService.getAllPositions();
+    }
+
+    @GetMapping("")
+    public R getAllPositions_R(){
+        List<Position> allPositions = positionService.getAllPositions();
+        return R.ok().data("positions",allPositions);
     }
 
     @PostMapping("/")

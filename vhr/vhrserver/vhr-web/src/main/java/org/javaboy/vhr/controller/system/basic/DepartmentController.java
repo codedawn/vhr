@@ -3,6 +3,7 @@ package org.javaboy.vhr.controller.system.basic;
 import org.javaboy.vhr.model.Department;
 import org.javaboy.vhr.model.RespBean;
 import org.javaboy.vhr.service.DepartmentService;
+import org.javaboy.vhr.uitls.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,12 @@ public class DepartmentController {
     @GetMapping("/")
     public List<Department> getAllDepartments() {
         return departmentService.getAllDepartments();
+    }
+
+    @GetMapping("departments")
+    public R getAllDepartments_R() {
+        List<Department> allDepartments = departmentService.getAllDepartments();
+        return R.ok().data("departments",allDepartments);
     }
 
     @PostMapping("/")

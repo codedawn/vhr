@@ -9,26 +9,41 @@
     <result column="removeDate" property="removedate" jdbcType="DATE" />
     <result column="reason" property="reason" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <association property="employee" resultMap="org.javaboy.vhr.mapper.EmployeeecMapper.emp"></association>
+    <association property="department" javaType="org.javaboy.vhr.model.Department" column="afterDepId" select="org.javaboy.vhr.mapper.DepartmentMapper.selectByPrimaryKey">
+    </association>
+    <association property="position" javaType="org.javaboy.vhr.model.Position" column="afterJobId" select="org.javaboy.vhr.mapper.PositionMapper.selectByPrimaryKey">
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, eid, afterDepId, afterJobId, removeDate, reason, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from employeeremove
-    where id = #{id,jdbcType=INTEGER}
+    select * from employeeremove,employee
+    where employeeremove.id = #{id,jdbcType=INTEGER} and employeeremove.eid=employee.id
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+
+
+
+    <select id="selectAllEmployeeRemove" resultMap="BaseResultMap">
+      select * from employeeremove,employee where employeeremove.eid=employee.id
+      <if test="query!=''" >
+        and (employee.name like concat('%',#{query},'%') or employee.workID like concat('%',#{query},'%'))
+      </if>
+    </select>
+
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from employeeremove
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.javaboy.vhr.model.Employeeremove" >
-    insert into employeeremove (id, eid, afterDepId, 
-      afterJobId, removeDate, reason, 
+    insert into employeeremove (id, eid, afterDepId,
+      afterJobId, removeDate, reason,
       remark)
-    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{afterdepid,jdbcType=INTEGER}, 
-      #{afterjobid,jdbcType=INTEGER}, #{removedate,jdbcType=DATE}, #{reason,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{afterdepid,jdbcType=INTEGER},
+      #{afterjobid,jdbcType=INTEGER}, #{removedate,jdbcType=DATE}, #{reason,jdbcType=VARCHAR},
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.javaboy.vhr.model.Employeeremove" >
