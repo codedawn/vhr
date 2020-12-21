@@ -130,4 +130,18 @@
     </if>
   </select>
 
+  <select id="selectEmployeeecAndQuery" resultMap="BaseResultMap">
+    select * from employeeec,employee
+    where employeeec.eid=employee.id
+    <if test="departmentId!=null" >
+      and employee.departmentId=#{departmentId}
+    </if>
+    <if test="beginDateTime!=''" >
+      and unix_timestamp(employeeec.ecDate) &gt;= unix_timestamp(#{beginDateTime})
+    </if>
+    <if test="endDateTime!=''" >
+      and unix_timestamp(employeeec.ecDate) &lt;= unix_timestamp(#{endDateTime})
+    </if>
+  </select>
+
 </mapper>

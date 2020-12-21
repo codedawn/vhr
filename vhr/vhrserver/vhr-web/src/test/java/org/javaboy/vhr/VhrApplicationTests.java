@@ -1,5 +1,6 @@
 package org.javaboy.vhr;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.javaboy.vhr.model.Employeeremove;
 import org.javaboy.vhr.service.DepartmentService;
 import org.javaboy.vhr.service.EmploeeecService;
@@ -39,6 +40,7 @@ public class VhrApplicationTests {
     @Test
     public void employeeecMapperTest(){
 
+        ObjectMapper objectMapper = new ObjectMapper();
         List<Employeeremove> employeeremoves = employeeRemoveService.selectAllEmployeeRemove("");
 
         System.out.println(employeeremoves);

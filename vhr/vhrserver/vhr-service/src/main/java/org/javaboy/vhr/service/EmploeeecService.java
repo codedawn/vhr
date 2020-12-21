@@ -33,4 +33,8 @@ public class EmploeeecService {
     public Employeeec selectByPrimaryKey(Integer id){
         return employeeecMapper.selectByPrimaryKey(id);
     }
+
+    public List<Employeeec> selectEmployeeecAndQuery(Integer departmentId,String beginDateTime,String endDateTime){
+        return employeeecMapper.selectEmployeeecAndQuery(departmentId, beginDateTime, endDateTime);
+    }
 }

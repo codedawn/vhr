@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import "./assets/css/global.css"
+import VCharts from 'v-charts'
 import {
     Button,
     Input,
@@ -56,6 +57,7 @@ import {
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.prototype.$ELEMENT = {size: 'small', zIndex: 3000};
+Vue.use(VCharts)
 Vue.use(Switch);
 Vue.use(CollapseItem);
 Vue.use(Radio);
@@ -104,6 +106,7 @@ Vue.use(Cascader);
 Vue.prototype.$alert = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$message=Message
+
 
 import {postRequest} from "./utils/api";
 import {postKeyValueRequest} from "./utils/api";

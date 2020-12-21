@@ -23,6 +23,7 @@ public interface EmployeeecMapper {
      * @return
      */
     List<Employeeec> selectAllEmployeeec(String query);
+    List<Employeeec> selectEmployeeecAndQuery(Integer departmentId,String beginDateTime,String endDateTime);
 
 
 
